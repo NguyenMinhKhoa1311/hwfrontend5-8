@@ -4,4 +4,5 @@ export interface CartState{
     cartList: Product[];
     productList: Product[];
     total: number;
+
 }

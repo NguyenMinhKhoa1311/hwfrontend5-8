@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -13,7 +13,7 @@ import* as ProductAction from '../../../../ngrx/actions/product.actions'
   styleUrls: ['./dialogdetail.component.scss']
 })
 export class DialogdetailComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public product: Product, private store: Store<{ product: ProductState }>) {
+  constructor(@Inject(MAT_DIALOG_DATA) public product: Product, private store: Store<{ product: ProductState }>,  public dialogRef: MatDialogRef<DialogdetailComponent>) {
     console.log(this.product)
   }
   addproductForm!: FormGroup;
@@ -29,7 +29,22 @@ export class DialogdetailComponent implements OnInit {
   }
   updateProduct(product: Product){
     product._id = this.product._id
+    if(!product.description){
+      product.description = this.product.description
+    }
+    if(!product.imgSrc){
+      product.imgSrc = this.product.imgSrc
+    }
+    if(!product.price){
+      product.price = this.product.price
+    }
+    if(!product.name)
+    {
+      product.name = this.product.name
+    }
+    console.log(product.price)
     this.store.dispatch(ProductAction.updateProduct({product}));
+    this.dialogRef.close('close')
   }
 
 }

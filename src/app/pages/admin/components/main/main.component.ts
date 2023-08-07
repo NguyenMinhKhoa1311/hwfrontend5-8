@@ -68,7 +68,13 @@ export class MainComponent implements OnInit {
 
   }
   addProduct(product: Product) {
-    this.store.dispatch(ProductAction.addproduct({ product }))
+    if(!(product.name)||!(product.description)||!(product.price)||!(product.imgSrc)){
+      alert("nhập vào chi tiết sản phẩm đi thiếu kìa ")
+    }
+    else{
+      this.store.dispatch(ProductAction.addproduct({ product }))
+    }
+
   }
   openDialog(product: Product): void {
     const dialogRef = this.dialog.open(DialogdetailComponent, {

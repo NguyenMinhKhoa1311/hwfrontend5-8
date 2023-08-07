@@ -27,6 +27,14 @@
     display: flex;
 
 }
+.btnbuy{
+    border: 1px solid black;
+    cursor: pointer;
+}
+.btnbuy:hover{
+    background-color: black;
+    color: white;
+}
 
 
 

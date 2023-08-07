@@ -8,67 +8,63 @@ import { state } from "@angular/animations"
 export const initualState: CartState ={
     cartList: [],
     productList: [],
-    total:0
+    total:0,
+
+
 
 }
 export const CartReducer = createReducer(
     initualState,
-    on(CartAction.addProductToCart, (state, action)=>{
+    on(CartAction.addProductToCart, (state, action) => {
         console.log(action.type);
-        const productList = state.productList.map(item=>{
-            if(item._id === action.product._id){
-                return {
-                    ...item,
-                    stock: item.quantity +1
-                }
-            }
-            return item;
-        });
-        const cartList =[...state.cartList,action.product];
-        const total = state.total+action.product.price;
-        return {
-            ...state,
-            productList,
-            cartList,
-            total,
+        const cartList = [...state.cartList];
+        const index = cartList.findIndex((item) => item._id === action.product._id);
+        if (index !== -1) {
+          cartList[index] = {
+            ...cartList[index],
+            stock: cartList[index].stock + 1,
+            price: cartList[index].price * cartList[index].stock,
+          };
+        } else {
+          cartList.push({
+            ...action.product,
+            stock: 1,
+          });
         }
-    }),
-    on(CartAction.removeProductFromCart, (state, action) =>{
+        const total = state.total + action.product.price;
+        let newState = {
+          ...state,
+          cartList,
+          total,
+        };
+        return newState;
+      }),
+      on(CartAction.removeProductFromCart, (state, action) => {
         console.log(action.type);
-        const productList = state.productList.map(item=>{
-            if(item._id === action.product._id){
-                return {
-                    ...item,
-                    stock: item.quantity -1
-                }
-            }
-            return item;
-        });
-        const cartList = state.cartList.filter(item=>item._id !== action.product._id);
-        const total = state.total-action.product.price;
-        return {
-            ...state,
-            productList,
-            cartList,
-            total,
-        }
-    }),
-    on(CartAction.addProductToStock, (state, action)=>{
+        let newState = {
+          ...state,
+          cartList: state.cartList.filter((item) => item._id !== action.product._id),
+          total: state.total - action.product.price * action.product.stock,
+        };
+        return newState;
+      }),
+      on(CartAction.addProductToStock, (state, action) => {
         console.log(action.type);
-        const productList = state.productList.map(item=>{
-            if(item._id === action.product._id){
-                return {
-                    ...item,
-                    stock: item.stock +1
-                }
-            }
-            return item;
-        });
-        return {
-            ...state,
-            productList,
+        let cartList = [...state.cartList];
+        const index = cartList.findIndex((item) => item._id === action.product._id);
+        if (index !== -1) {
+          cartList[index] = {
+            ...cartList[index],
+            stock: cartList[index].stock + 1,
+          };
         }
-    }),
+        let newState = {
+          ...state,
+          total: state.total + action.product.price,
+          cartList,
+        };
+        return newState;
+      }),
     on(CartAction.removeProductFromStock, (state,action)=>{
         console.log(action.type);
         const productList = state.productList.map(item=>{
@@ -85,20 +81,26 @@ export const CartReducer = createReducer(
             productList,
         }
     }),
-    on(CartAction.clearAllCart, (state,action) =>{
+    on(CartAction.removeProductFromStock, (state, action) => {
         console.log(action.type);
-        const productList = state.productList.map(item=>{
-            return{
-                ...item,
-                quantity:0,
-            }
-        })
-        return {
-            ...state,
-            productList,
-            cartList: [],
-            total: 0,
+        let cartList = [...state.cartList];
+        const index = cartList.findIndex((item) => item._id === action.product._id);
+        if (index !== -1) {
+          cartList[index] = {
+            ...cartList[index],
+            stock: cartList[index].stock - 1,
+          };
         }
-    })
+    
+        if (cartList[index].stock === 0) {
+          cartList = cartList.filter((item) => item._id !== action.product._id);
+        }
+        let newState = {
+          ...state,
+          total: state.total - action.product.price,
+          cartList,
+        };
+        return newState;
+      })
 
 )

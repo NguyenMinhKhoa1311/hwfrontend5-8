@@ -179,3 +179,38 @@ input::placeholder {
       }
     }
   }
+  .btnadd{
+    width: 200px;
+    border-radius: 5px;
+  }
+  .btnadd:hover{
+    width: 200px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    border: 1px solid black;
+    
+  }
+  .btndel{
+    width: 200px;
+    border-radius: 5px;
+  }
+  .btndel{
+    width: 200px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    border: 1px solid black;
+  }
+  .btndel:hover{
+    width: 200px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+  }

@@ -61,8 +61,8 @@
                 <div class="liprice" style="font-size: 20px;">{{item.price}}</div>
                 <div class="lidescription" style="font-size: 20px;">{{item.description}}</div>
                 <div class="containerliimg"><img class="liimg" src={{item.imgSrc}} alt=""></div>
-                <button style="font-size: 20px;" (click)="deleteProduct(item._id)">Xoá</button>
-                <button style="font-size: 20px;" (click)="openDialog(item)">Chi tiết</button>
+                <button style="font-size: 20px;" (click)="deleteProduct(item._id)" class="btndel">Xoá</button>
+                <button style="font-size: 20px;" (click)="openDialog(item)" class="btndel">Chi tiết</button>
             </div>
           </div>
 
