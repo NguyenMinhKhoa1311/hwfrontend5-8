@@ -1,0 +1,86 @@
+.main{
+    padding: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-self: center;
+    flex-wrap: wrap;
+    height: 95%;
+}
+.container{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-self: center;
+    flex-wrap: wrap;
+    margin-bottom: 250px;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+}
+.container .item{
+    margin: 10px;
+    width: 25%;
+}
+
+
+
+.footer{
+    padding-top: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #252525;
+}
+.left_footer div,.center_footer div, .right_footer div{
+    color: white;
+    margin-top: 20px;
+}
+.center_footer{
+    padding-bottom: 17px;
+}
+
+.right_footer{
+    padding-bottom: 70px;
+}
+.lv1{
+    font-size: 16px;
+}
+.lv2{
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+.lv3{
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+
+}
+.boder_input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.boder_input{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+.boder_input div{
+    border-bottom: 1px solid white;
+    margin-right: 10px;
+}
+input{
+    background-color: #252525;
+    border: none;
+}
+button{
+    height: 30px;
+    width: 75px;
+}
+input::placeholder {
+    color: white; /* Màu bạn muốn */
+  }
+

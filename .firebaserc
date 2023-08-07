@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "homework5-8": {
+      "hosting": {
+        "front-end": [
+          "homework5-8"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "homework5-8"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "front-end",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}
