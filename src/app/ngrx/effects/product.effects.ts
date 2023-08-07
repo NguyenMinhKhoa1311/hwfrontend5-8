@@ -20,4 +20,15 @@ export class ProductEffect {
         )
     )
     )
+    deleteProduct$ = createEffect(() =>
+    this.action$.pipe(
+      ofType(ProductAction.deleteProduct),
+      exhaustMap((action) =>
+        this.productService.deleteProduct(action.id).pipe(
+          map(() => ProductAction.deleteProductSuccess()),
+          catchError((error) => of(ProductAction.deleteProductFailure({ error })))
+        )
+      )
+    )
+  );
 }

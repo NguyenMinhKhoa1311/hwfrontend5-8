@@ -11,4 +11,8 @@ export class ProductService {
   getProduct(){
     return this.httpClient.get<Product[]>("http://localhost:3000/product");
   }
+  deleteProduct(id:string){
+    return this.httpClient.delete<Product>(`http://localhost:3000/product/delete/${id}`)
+    
+  }
 }

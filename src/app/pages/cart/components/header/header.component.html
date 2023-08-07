@@ -45,10 +45,15 @@
                     d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z"
                     stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
-
-
-            
+            <div (click)="login()"*ngIf="!isLogin"><mat-icon >login</mat-icon>
+            </div>
+            <div (click)="logout()" *ngIf="isLogin"><mat-icon >logout</mat-icon>
+            </div>
+            <div (click)="toAdmin()"> <mat-icon>manage_accounts</mat-icon></div>
         </div>
+        <div id="in4User" class="box" *ngIf="this.userIn4Service.userInfo.value?.name">
+          <p>{{this.userIn4Service.userInfo.value?.name}}</p>
+      </div>
     </div>
     <!-- <dialog #appDialog >
         <form class="form" [formGroup]="itemFormGroups">

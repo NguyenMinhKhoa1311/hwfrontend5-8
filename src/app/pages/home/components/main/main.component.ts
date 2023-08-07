@@ -17,6 +17,7 @@ export class MainComponent {
   
   productList$: Observable<Product[]> = this.store.select('product','productList')
   constructor( private store: Store<{product: ProductState}>, private storeCart: Store<{cart: CartState}>){
+    console.log('home')
     this.store.dispatch(ProductAction.get());
 
     this.productList$.forEach(item=>{

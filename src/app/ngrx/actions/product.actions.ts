@@ -12,3 +12,11 @@ export const getFailure = createAction(
     '[product] get product failure',
     props<{error: any}>()
 );
+export const deleteProduct = createAction('[product] delete product',props<{id:string}>())
+export const deleteProductSuccess = createAction(
+    '[product] delete product success',
+    );
+export const deleteProductFailure = createAction(
+    '[product] delete product failure',
+    props<{error: any}>()
+)

@@ -7,6 +7,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { MainComponent } from './components/main/main.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {MatCardModule} from '@angular/material/card';
     CommonModule,
     AdminRoutingModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatListModule
   ]
 })
 export class AdminModule { }

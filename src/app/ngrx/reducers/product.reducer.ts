@@ -6,6 +6,8 @@ import { state } from "@angular/animations";
 export const initualState: ProductState = {
     isLoading: false,
     isSuccess: false,
+    isDelloading: false,
+    isDelSuccess: false,
     productList: [],
     error: ""
 };
@@ -41,5 +43,35 @@ export const ProductReducer = createReducer(
         }        
         console.log(newState.error)
         return newState;
-    })
+    }),
+    on(ProductAction.deleteProduct,(state,action)=>{
+        console.log(action.type);
+        let newState = {
+            ...state,
+            isDelLoading: true,
+            isDelSuccess: false,
+            error: '',
+        };
+        return newState;
+    }),
+    on(ProductAction.deleteProductSuccess, (state, action)=>{
+        console.log(action.type);
+        let newState = {
+            ...state,
+            isDelLoading: false,
+            isDelSuccess: true,
+        }        
+        return newState;
+    }),
+    on(ProductAction.deleteProductFailure, (state, action)=>{
+        console.log(action.type);
+        let newState = {
+            ...state,
+            isDelLoading: false,
+            isDelSuccess: false,
+            error: action.error,
+        }        
+        console.log(newState.error)
+        return newState;
+    }),
 )
