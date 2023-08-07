@@ -8,6 +8,8 @@ export interface ProductState{
     isDelloading: boolean;
     isAddSuccess: boolean;
     isAddloading: boolean;
+    isUpSuccess: boolean;
+    isUpLoading: boolean;
     productList: Product[];
     error: string;
 }

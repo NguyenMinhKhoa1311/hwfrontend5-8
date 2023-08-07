@@ -1,0 +1,26 @@
+.form{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 500px;
+    height: 700px;
+    .form-group{
+        width: 100%;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        img{
+            width: 60%;
+            height: 80%;
+        }
+        input{
+            width: 60%;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            border: none;
+        }
+    }
+}

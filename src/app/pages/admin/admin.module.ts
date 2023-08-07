@@ -9,13 +9,16 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatListModule} from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogdetailComponent } from './components/dialogdetail/dialogdetail.component';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
     AdminComponent,
-    MainComponent
+    MainComponent,
+    DialogdetailComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +27,8 @@ import {MatListModule} from '@angular/material/list';
     MatIconModule,
     MatListModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ]
 })
 export class AdminModule { }

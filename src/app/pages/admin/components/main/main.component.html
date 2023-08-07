@@ -1,25 +1,6 @@
 <div class="main">
     <div class="container">
-        <div class="list" role="list">
-            <div class="liitem" id="listtitle" >
-                <div class="liname">Tên</div>
-                <div class="liprice">Giá</div>
-                <div class="lidescription">Description</div>
-                <div>Ảnh</div>
-                <button style="border: none; background-color: white;"></button>
-                <button style="border: none; background-color: white;"></button>
-
-            </div>
-            <div class="liitem" *ngFor="let item of productList$ | async">
-                <div class="liname" style="font-size: 20px;">{{item.name}}</div>
-                <div class="liprice" style="font-size: 20px;">{{item.price}}</div>
-                <div class="lidescription" style="font-size: 20px;">{{item.description}}</div>
-                <div class="containerliimg"><img class="liimg" src={{item.imgSrc}} alt=""></div>
-                <button style="font-size: 20px;" (click)="deleteProduct(item._id)">xoá</button>
-                <button style="font-size: 20px;">sửa</button>
-            </div>
-          </div>
-          <div class="containerinput">
+        <div class="containerinput">
             <h2>Thêm sản phẩm</h2>
             <form class="form" [formGroup]="addproductForm">
                 <div class="form-group">
@@ -65,6 +46,26 @@
               </form>
           </div>
           <div class="containerbtn"><button class="btnadd" (click)="addProduct(addproductForm.value)">Thêm sản phẩm</button></div>
+        <div class="list" role="list">
+            <div class="liitem" id="listtitle" >
+                <div class="liname">Tên</div>
+                <div class="liprice">Giá</div>
+                <div class="lidescription">Description</div>
+                <div>Ảnh</div>
+                <button style="border: none; background-color: white;"></button>
+                <button style="border: none; background-color: white;"></button>
+                
+            </div>
+            <div class="liitem" *ngFor="let item of productList$ | async">
+                <div class="liname" style="font-size: 20px;">{{item.name}}</div>
+                <div class="liprice" style="font-size: 20px;">{{item.price}}</div>
+                <div class="lidescription" style="font-size: 20px;">{{item.description}}</div>
+                <div class="containerliimg"><img class="liimg" src={{item.imgSrc}} alt=""></div>
+                <button style="font-size: 20px;" (click)="deleteProduct(item._id)">Xoá</button>
+                <button style="font-size: 20px;" (click)="openDialog(item)">Chi tiết</button>
+            </div>
+          </div>
+
 
     </div>
 
