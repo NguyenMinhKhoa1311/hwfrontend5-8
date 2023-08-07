@@ -8,6 +8,8 @@ export const initualState: ProductState = {
     isSuccess: false,
     isDelloading: false,
     isDelSuccess: false,
+    isAddSuccess:false,
+    isAddloading:false,
     productList: [],
     error: ""
 };
@@ -69,6 +71,36 @@ export const ProductReducer = createReducer(
             ...state,
             isDelLoading: false,
             isDelSuccess: false,
+            error: action.error,
+        }        
+        console.log(newState.error)
+        return newState;
+    }),
+    on(ProductAction.addproduct,(state,action)=>{
+        console.log(action.type);
+        let newState = {
+            ...state,
+            isAddLoading: true,
+            isAddSuccess: false,
+            error: '',
+        };
+        return newState;
+    }),
+    on(ProductAction.addProductSuccess, (state, action)=>{
+        console.log(action.type);
+        let newState = {
+            ...state,
+            isAddLoading: false,
+            isAddSuccess: true,
+        }        
+        return newState;
+    }),
+    on(ProductAction.addProductFailure, (state, action)=>{
+        console.log(action.type);
+        let newState = {
+            ...state,
+            isAddLoading: false,
+            isAddSuccess: false,
             error: action.error,
         }        
         console.log(newState.error)

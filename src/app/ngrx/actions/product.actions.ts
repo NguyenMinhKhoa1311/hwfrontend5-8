@@ -20,3 +20,11 @@ export const deleteProductFailure = createAction(
     '[product] delete product failure',
     props<{error: any}>()
 )
+export const addproduct = createAction('[product] add product',props<{product: Product}>())
+export const addProductSuccess = createAction(
+    '[product] add product success',
+    );
+export const addProductFailure = createAction(
+    '[product] add product failure',
+    props<{error: any}>()
+)

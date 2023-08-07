@@ -6,6 +6,8 @@ export interface ProductState{
     isSuccess: boolean;
     isDelSuccess: boolean;
     isDelloading: boolean;
+    isAddSuccess: boolean;
+    isAddloading: boolean;
     productList: Product[];
     error: string;
 }

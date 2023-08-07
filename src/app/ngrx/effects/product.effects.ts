@@ -31,4 +31,15 @@ export class ProductEffect {
       )
     )
   );
+  addProduct$ = createEffect(() =>
+  this.action$.pipe(
+    ofType(ProductAction.addproduct),
+    exhaustMap((action) =>
+      this.productService.addProduct(action.product).pipe(
+        map(() => ProductAction.addProductSuccess()),
+        catchError((error) => of(ProductAction.addProductFailure({ error })))
+      )
+    )
+  )
+);
 }

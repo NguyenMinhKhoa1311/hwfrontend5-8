@@ -13,6 +13,8 @@ export class ProductService {
   }
   deleteProduct(id:string){
     return this.httpClient.delete<Product>(`http://localhost:3000/product/delete/${id}`)
-    
+  }
+  addProduct(product:Product){
+    return this.httpClient.post<Product>(`http://localhost:3000/product/create`,product)
   }
 }

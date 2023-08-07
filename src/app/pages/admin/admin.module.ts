@@ -7,6 +7,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { MainComponent } from './components/main/main.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatListModule} from '@angular/material/list';
 
 
@@ -21,7 +22,9 @@ import {MatListModule} from '@angular/material/list';
     AdminRoutingModule,
     MatCardModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }
