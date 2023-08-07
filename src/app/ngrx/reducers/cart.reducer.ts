@@ -65,22 +65,22 @@ export const CartReducer = createReducer(
         };
         return newState;
       }),
-    on(CartAction.removeProductFromStock, (state,action)=>{
-        console.log(action.type);
-        const productList = state.productList.map(item=>{
-            if(item._id === action.product._id){
-                return {
-                    ...item,
-                    stock: item.stock -1
-                }
-            }
-            return item;
-        });
-        return {
-            ...state,
-            productList,
-        }
-    }),
+    // on(CartAction.removeProductFromStock, (state,action)=>{
+    //     console.log(action.type);
+    //     const productList = state.productList.map(item=>{
+    //         if(item._id === action.product._id){
+    //             return {
+    //                 ...item,
+    //                 stock: item.stock -1
+    //             }
+    //         }
+    //         return item;
+    //     });
+    //     return {
+    //         ...state,
+    //         productList,
+    //     }
+    // }),
     on(CartAction.removeProductFromStock, (state, action) => {
         console.log(action.type);
         let cartList = [...state.cartList];
