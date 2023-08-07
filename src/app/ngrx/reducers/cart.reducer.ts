@@ -101,6 +101,20 @@ export const CartReducer = createReducer(
           cartList,
         };
         return newState;
-      })
+      }),
+      on(CartAction.clearAllCart, (state,action) =>{
+        console.log(action.type);
+        const productList = state.productList.map(item=>{
+            return{
+                ...item,
+            }
+        })
+        return {
+            ...state,
+            productList,
+            cartList: [],
+            total: 0,
+        }
+    })
 
 )
