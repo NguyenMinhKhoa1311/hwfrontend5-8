@@ -6,6 +6,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ProductState } from 'src/app/ngrx/states/product.state';
 import* as ProductAction from '../../../../ngrx/actions/product.actions'
+import { AuthState } from 'src/app/ngrx/states/auth.state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dialogdetail',
@@ -13,7 +15,8 @@ import* as ProductAction from '../../../../ngrx/actions/product.actions'
   styleUrls: ['./dialogdetail.component.scss']
 })
 export class DialogdetailComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public product: Product, private store: Store<{ product: ProductState }>,  public dialogRef: MatDialogRef<DialogdetailComponent>) {
+  idToken$: Observable<string> = this.store.select('idToken','idToken');
+  constructor(@Inject(MAT_DIALOG_DATA) public product: Product, private store: Store<{ product: ProductState,idToken: AuthState }>,  public dialogRef: MatDialogRef<DialogdetailComponent>) {
     console.log(this.product)
   }
   addproductForm!: FormGroup;
@@ -43,7 +46,12 @@ export class DialogdetailComponent implements OnInit {
       product.name = this.product.name
     }
     console.log(product.price)
-    this.store.dispatch(ProductAction.updateProduct({product}));
+    this.idToken$.subscribe(value =>{
+      if(value){
+        this.store.dispatch(ProductAction.updateProduct({product,idToken:value}));
+      }
+    })
+
     this.dialogRef.close('close')
   }
 

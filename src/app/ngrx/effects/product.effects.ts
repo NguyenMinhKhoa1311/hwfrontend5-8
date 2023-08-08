@@ -10,8 +10,8 @@ export class ProductEffect {
     constructor(private productService: ProductService, private action$: Actions) { }
     get$ = createEffect(() => this.action$.pipe(
         ofType(ProductAction.get),
-        exhaustMap(() =>
-            this.productService.getProduct().pipe(
+        exhaustMap((action) =>
+            this.productService.getProduct(action.idToken).pipe(
                 map((products) => {
                     return ProductAction.getSuccess({ productList: products })
                 }),
@@ -24,7 +24,7 @@ export class ProductEffect {
     this.action$.pipe(
       ofType(ProductAction.deleteProduct),
       exhaustMap((action) =>
-        this.productService.deleteProduct(action.id).pipe(
+        this.productService.deleteProduct(action.id,action.idToken).pipe(
           map(() => ProductAction.deleteProductSuccess()),
           catchError((error) => of(ProductAction.deleteProductFailure({ error })))
         )
@@ -35,7 +35,7 @@ export class ProductEffect {
   this.action$.pipe(
     ofType(ProductAction.addproduct),
     exhaustMap((action) =>
-      this.productService.addProduct(action.product).pipe(
+      this.productService.addProduct(action.product,action.idToken).pipe(
         map(() => ProductAction.addProductSuccess()),
         catchError((error) => of(ProductAction.addProductFailure({ error })))
       )
@@ -47,7 +47,7 @@ updateProduct$ = createEffect(() =>
 this.action$.pipe(
   ofType(ProductAction.updateProduct),
   exhaustMap((action) =>
-    this.productService.updateProduct(action.product).pipe(
+    this.productService.updateProduct(action.product,action.idToken).pipe(
       map(() => ProductAction.updateProductSuccess()),
       catchError((error) => of(ProductAction.updateProducttFailure({ error })))
     )

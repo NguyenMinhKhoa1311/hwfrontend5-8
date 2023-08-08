@@ -21,6 +21,7 @@ import { provideMessaging,getMessaging } from '@angular/fire/messaging';
 import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { authReducer } from './ngrx/reducers/idToken.reducer';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    StoreModule.forRoot({product: ProductReducer,cart: CartReducer},{}),
+    StoreModule.forRoot({product: ProductReducer,cart: CartReducer, idToken: authReducer},{}),
 
     EffectsModule.forRoot([ProductEffect]),
      provideFirebaseApp(() => initializeApp(environment.firebase)),

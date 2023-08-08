@@ -8,6 +8,7 @@ import *as  ProductAction from '../../../../ngrx/actions/product.actions';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogdetailComponent } from '../dialogdetail/dialogdetail.component';
+import { AuthState } from 'src/app/ngrx/states/auth.state';
 
 @Component({
   selector: 'app-main',
@@ -21,10 +22,19 @@ export class MainComponent implements OnInit {
   )
   isAddSuccess$ = this.store.select('product', 'isAddSuccess');
   isUpSuccess$ = this.store.select('product', 'isUpSuccess')
+  idToken: string = ''
+  idToken$: Observable<string> = this.store.select('idToken','idToken');
   addproductForm!: FormGroup;
-  constructor(private store: Store<{ product: ProductState }>, private storeCart: Store<{ cart: CartState }>, private dialog: MatDialog) {
+  constructor(private store: Store<{ product: ProductState, idToken: AuthState }>, private storeCart: Store<{ cart: CartState }>, private dialog: MatDialog) {
     console.log('admin')
-    this.store.dispatch(ProductAction.get());
+    this.idToken$.subscribe(value =>{
+      if(value){
+        console.log('làm đúng r');
+        this.idToken = value
+        this.store.dispatch(ProductAction.get({idToken:value}));
+      }
+    })
+
 
     this.productList$.forEach(item => {
       console.log(item.length)
@@ -33,21 +43,36 @@ export class MainComponent implements OnInit {
       this.isDelSuccess$.subscribe((value) => {
         console.log(value)
         if (value) {
-          this.store.dispatch(ProductAction.get());
+          this.idToken$.subscribe(value =>{
+            if(value){
+              this.idToken = value
+              this.store.dispatch(ProductAction.get({idToken:value}));
+            }
+          })
         }
       })
 
     this.isAddSuccess$.subscribe((value) => {
       console.log(value)
       if (value) {
-        this.store.dispatch(ProductAction.get());
+        this.idToken$.subscribe(value =>{
+          if(value){
+            this.idToken = value
+            this.store.dispatch(ProductAction.get({idToken:value}));
+          }
+        })
       }
     });
 
     this.isUpSuccess$.subscribe(value => {
       console.log(value)
       if (value) {
-        this.store.dispatch(ProductAction.get());
+        this.idToken$.subscribe(value =>{
+          if(value){
+            this.idToken = value
+            this.store.dispatch(ProductAction.get({idToken:value}));
+          }
+        })
       }
     });
   }
@@ -64,7 +89,14 @@ export class MainComponent implements OnInit {
 
 
   deleteProduct(id: string) {
-    this.store.dispatch(ProductAction.deleteProduct({ id }))
+    this.idToken$.subscribe(value =>{
+      if(value){
+        this.idToken = value
+        this.store.dispatch(ProductAction.deleteProduct({ id ,idToken:value }))
+      }
+    })
+    
+
 
   }
   addProduct(product: Product) {
@@ -72,7 +104,14 @@ export class MainComponent implements OnInit {
       alert("nhập vào chi tiết sản phẩm đi thiếu kìa ")
     }
     else{
-      this.store.dispatch(ProductAction.addproduct({ product }))
+      this.idToken$.subscribe(value =>{
+        if(value){
+          this.idToken = value
+          this.store.dispatch(ProductAction.addproduct({ product,idToken:value }))
+        }
+      })
+      
+
     }
 
   }
